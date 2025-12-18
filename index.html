@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mina's Menu | Savour the Taste of Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Mina's Menu | Premium Filipino Catering</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,7 +17,7 @@
     </header>
 
     <div class="container">
-     <form action="https://formspree.io/f/mkowwyzq" method="POST">
+        <form action="https://formspree.io/f/mkowwyzq" method="POST" id="orderForm">
             
             <section class="customer-section">
                 <h2 class="section-title">Delivery Details</h2>
@@ -34,17 +34,36 @@
                 </div>
             </section>
 
-            <h2 class="section-title">Our Signature Dishes</h2>
+            <h2 class="section-title">Signature Dishes</h2>
             <div class="menu-grid">
-                <div class="card"><img src="https://i.pinimg.com/736x/22/6c/0e/226c0eb094603fb64fd328c53b673f2d.jpg"><div class="card-info"><h4>Spaghetti (Large)</h4><p class="price">₱1,200</p><button type="button" class="add-btn" onclick="addToCart('Spaghetti', 1200)">+ Add to Order</button></div></div>
-                <div class="card"><img src="https://i.pinimg.com/736x/d5/ba/d6/d5bad6cd56327d7857b225cb5913b31c.jpg"><div class="card-info"><h4>Pansit (Large)</h4><p class="price">₱1,200</p><button type="button" class="add-btn" onclick="addToCart('Pansit', 1200)">+ Add to Order</button></div></div>
-                <div class="card"><img src="https://i.pinimg.com/736x/a5/7a/da/a57ada9962153de831f02e5d2f643797.jpg"><div class="card-info"><h4>Shanghai (100 pcs)</h4><p class="price">₱900</p><button type="button" class="add-btn" onclick="addToCart('Shanghai', 900)">+ Add to Order</button></div></div>
-                <div class="card"><img src="https://i.pinimg.com/736x/c4/a4/52/c4a4522cdc59f29e0470094ea8f0f259.jpg"><div class="card-info"><h4>Special Menudo</h4><p class="price">₱1,500</p><button type="button" class="add-btn" onclick="addToCart('Menudo', 1500)">+ Add to Order</button></div></div>
-                <div class="card"><img src="https://i.pinimg.com/736x/88/b7/45/88b745b36c8ff8b15b834cdbec9b50e3.jpg"><div class="card-info"><h4>Buttered Shrimp</h4><p class="price">₱1,500</p><button type="button" class="add-btn" onclick="addToCart('Shrimp', 1500)">+ Add to Order</button></div></div>
-                <div class="card"><img src="https://i.pinimg.com/1200x/ba/e6/10/bae61061fa702ec7db585d28bc2ce29e.jpg"><div class="card-info"><h4>Relyeno (Pc)</h4><p class="price">₱250</p><button type="button" class="add-btn" onclick="addToCart('Relyeno', 250)">+ Add to Order</button></div></div>
-                <div class="card"><img src="https://i.pinimg.com/1200x/d0/5e/c4/d05ec437d15f0b8d81a49ea07e39f20e.jpg"><div class="card-info"><h4>Creamy Maja</h4><p class="price">₱500</p><button type="button" class="add-btn" onclick="addToCart('Maja', 500)">+ Add to Order</button></div></div>
-                <div class="card"><img src="https://i.pinimg.com/1200x/c6/97/6f/c6976fa9306f92076a1153259634164b.jpg"><div class="card-info"><h4>Special Leche Flan</h4><p class="price">₱100</p><button type="button" class="add-btn" onclick="addToCart('Flan', 100)">+ Add to Order</button></div></div>
-                <div class="card"><img src="https://i.pinimg.com/1200x/f1/8d/a8/f18da80beb16d7736448c375624bd091.jpg"><div class="card-info"><h4>Puto Cheese</h4><p class="price">₱300</p><button type="button" class="add-btn" onclick="addToCart('Puto', 300)">+ Add to Order</button></div></div>
+                <div class="card">
+                    <div class="badge gold">⭐ Best Seller</div>
+                    <img src="https://i.pinimg.com/736x/22/6c/0e/226c0eb094603fb64fd328c53b673f2d.jpg" alt="Spaghetti">
+                    <div class="card-info">
+                        <h4>Spaghetti (Large Tray)</h4>
+                        <p class="price">₱1,200</p>
+                        <button type="button" class="add-btn" onclick="addToCart('Spaghetti', 1200)">+ Add to Order</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="badge popular">🔥 Popular</div>
+                    <img src="https://i.pinimg.com/736x/a5/7a/da/a57ada9962153de831f02e5d2f643797.jpg" alt="Shanghai">
+                    <div class="card-info">
+                        <h4>Shanghai (100 pcs)</h4>
+                        <p class="price">₱900</p>
+                        <button type="button" class="add-btn" onclick="addToCart('Shanghai', 900)">+ Add to Order</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="https://i.pinimg.com/736x/c4/a4/52/c4a4522cdc59f29e0470094ea8f0f259.jpg" alt="Menudo">
+                    <div class="card-info">
+                        <h4>Special Pork Menudo</h4>
+                        <p class="price">₱1,500</p>
+                        <button type="button" class="add-btn" onclick="addToCart('Menudo', 1500)">+ Add to Order</button>
+                    </div>
+                </div>
             </div>
 
             <textarea name="Order-Summary" id="orderSummary" style="display:none;"></textarea>
@@ -52,8 +71,8 @@
 
             <div class="cart-bar">
                 <div class="cart-details">
-                    <span class="total-label">TOTAL AMOUNT</span>
-                    <span class="total-price">₱<span id="totalDisplay">0</span></span>
+                    <span class="total-label">Subtotal</span>
+                    <span class="total-price" id="totalDisplay">₱0</span>
                 </div>
                 <button type="submit" class="checkout-btn">Confirm Order</button>
             </div>
@@ -61,13 +80,10 @@
     </div>
 
     <footer class="footer">
-        <p>GCash: 09810117896 | Contact: 09929440921</p>
-        <p>© 2025 Mina's Menu. Savour the Taste of Home.</p>
+        <p><strong>GCash:</strong> 09929440921 | <strong>Contact:</strong> 09929440921</p>
+        <p>© 2025 Mina's Menu. All Rights Reserved.</p>
     </footer>
 
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
