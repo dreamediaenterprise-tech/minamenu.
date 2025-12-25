@@ -1,83 +1,201 @@
-const data = {
+// ====== DATA (LUMA + BAGO, FULL) ======
+const MENU = {
   main: [
-    ["Spaghetti (Large)",1200,"https://i.pinimg.com/736x/22/6c/0e/226c0eb094603fb64fd328c53b673f2d.jpg"],
-    ["Pansit (Large)",1200,"https://i.pinimg.com/736x/d5/ba/d6/d5bad6cd56327d7857b225cb5913b31c.jpg"],
-    ["Shanghai (100 pcs)",900,"https://i.pinimg.com/736x/a5/7a/da/a57ada9962153de831f02e5d2f643797.jpg"],
-    ["Menudo",1500,"https://i.pinimg.com/736x/c4/a4/52/c4a4522cdc59f29e0470094ea8f0f259.jpg"],
-    ["Buttered Shrimp",1500,"https://i.pinimg.com/736x/88/b7/45/88b745b36c8ff8b15b834cdbec9b50e3.jpg"],
-    ["Kaldereta",1300,"https://i.pinimg.com/1200x/6f/1d/35/6f1d35d7a3afa50bd70072af8bd2b072.jpg"],
-    ["Pork BBQ (10 pcs)",800,"https://i.pinimg.com/1200x/33/23/c4/3323c4dc60d03f54f2490d8fa9bb3d62.jpg"],
-    ["Chicken BBQ (10 pcs)",800,"https://i.pinimg.com/1200x/5b/13/fb/5b13fbf77cd6a984e3fa59ccee4cc7b3.jpg"]
+    { name: "Spaghetti (Large)", price: 1200, img: "https://i.pinimg.com/736x/22/6c/0e/226c0eb094603fb64fd328c53b673f2d.jpg" },
+    { name: "Pansit (Large)", price: 1200, img: "https://i.pinimg.com/736x/d5/ba/d6/d5bad6cd56327d7857b225cb5913b31c.jpg" },
+    { name: "Shanghai (100 pcs)", price: 900, img: "https://i.pinimg.com/736x/a5/7a/da/a57ada9962153de831f02e5d2f643797.jpg" },
+    { name: "Menudo", price: 1500, img: "https://i.pinimg.com/736x/c4/a4/52/c4a4522cdc59f29e0470094ea8f0f259.jpg" },
+    { name: "Buttered Shrimp", price: 1500, img: "https://i.pinimg.com/736x/88/b7/45/88b745b36c8ff8b15b834cdbec9b50e3.jpg" },
+    { name: "Relyeno (Per Piece)", price: 250, img: "https://i.pinimg.com/1200x/ba/e6/10/bae61061fa702ec7db585d28bc2ce29e.jpg" },
+
+    { name: "Kaldereta", price: 1300, img: "https://i.pinimg.com/1200x/6f/1d/35/6f1d35d7a3afa50bd70072af8bd2b072.jpg" },
+    { name: "Pininyahang Manok", price: 1200, img: "https://i.pinimg.com/736x/c6/8c/f2/c68cf2223eac3c9ff5f3482e9f641b15.jpg" },
+    { name: "Fried Chicken", price: 1100, img: "https://i.pinimg.com/1200x/56/9e/a5/569ea58daee1a54a60e37545afc9310f.jpg" },
+    { name: "Afritada Chicken", price: 1200, img: "https://i.pinimg.com/1200x/c2/1f/38/c21f384030a47c8eac2d6228572cd213.jpg" },
+    { name: "Sisig", price: 900, img: "https://i.pinimg.com/736x/74/59/3b/74593bd7b7641c6d3b57553f1bf77aa6.jpg" },
+    { name: "Lechon Kawali", price: 1100, img: "https://i.pinimg.com/1200x/08/52/8b/08528bc58cf9100e657a47d55007613f.jpg" },
+    { name: "Kare-kare", price: 1400, img: "https://i.pinimg.com/1200x/7d/49/1e/7d491edfe4e64368ba8406c9380f3784.jpg" },
+    { name: "Pork BBQ (10 pcs)", price: 800, img: "https://i.pinimg.com/1200x/33/23/c4/3323c4dc60d03f54f2490d8fa9bb3d62.jpg" },
+    { name: "Chicken BBQ (10 pcs)", price: 800, img: "https://i.pinimg.com/1200x/5b/13/fb/5b13fbf77cd6a984e3fa59ccee4cc7b3.jpg" }
   ],
-  veg:[
-    ["Chop Suey",700,"https://i.pinimg.com/736x/97/c8/75/97c8750bdaacf86c61b0db741ab31232.jpg"]
+
+  veg: [
+    { name: "Chop Suey", price: 700, img: "https://i.pinimg.com/736x/97/c8/75/97c8750bdaacf86c61b0db741ab31232.jpg" }
   ],
-  dessert:[
-    ["Buko Salad",350,"https://i.pinimg.com/1200x/2b/22/47/2b2247d85fedef4b2976e9b30ef40bf2.jpg"],
-    ["Buko Pandan",350,"https://i.pinimg.com/1200x/b5/cd/61/b5cd61c76ebef2eba4ab6301879bb032.jpg"]
+
+  dessert: [
+    { name: "Maja Blanca (Bilaos)", price: 500, img: "https://i.pinimg.com/1200x/d0/5e/c4/d05ec437d15f0b8d81a49ea07e39f20e.jpg" },
+    { name: "Leche Flan (One Tub)", price: 100, img: "https://i.pinimg.com/1200x/c6/97/6f/c6976fa9306f92076a1153259634164b.jpg" },
+    { name: "Puto Cheese (25 pcs)", price: 300, img: "https://i.pinimg.com/1200x/f1/8d/a8/f18da80beb16d7736448c375624bd091.jpg" },
+    { name: "Buko Salad", price: 350, img: "https://i.pinimg.com/1200x/2b/22/47/2b2247d85fedef4b2976e9b30ef40bf2.jpg" },
+    { name: "Buko Pandan", price: 350, img: "https://i.pinimg.com/1200x/b5/cd/61/b5cd61c76ebef2eba4ab6301879bb032.jpg" }
   ]
 };
 
-let cart={};
+// ====== HELPERS ======
+const slugify = (str) =>
+  str.toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 
-function build(section,id){
-  const el=document.getElementById(id);
-  section.forEach((i,idx)=>{
-    cart[i[0]]=0;
-    el.innerHTML+=`
-    <div class="menu-card">
-      <img src="${i[2]}">
-      <div class="menu-info">
-        <h4>${i[0]}</h4>
-        <div class="menu-price">₱${i[1]}</div>
-        <div class="qty">
-          <button onclick="qty('${i[0]}',${i[1]},-1)">−</button>
-          <span id="q${i[0]}">0</span>
-          <button onclick="qty('${i[0]}',${i[1]},1)">+</button>
+const flatAll = () => [...MENU.main, ...MENU.veg, ...MENU.dessert];
+
+// ====== DOM ======
+const menuMain = document.getElementById("menuMain");
+const menuVeg = document.getElementById("menuVeg");
+const menuDessert = document.getElementById("menuDessert");
+
+const orderList = document.getElementById("orderList");
+const totalEl = document.getElementById("total");
+const orderDetails = document.getElementById("orderDetails");
+const totalAmount = document.getElementById("totalAmount");
+const paymentHidden = document.getElementById("paymentHidden");
+
+const gcashBox = document.getElementById("gcashBox");
+const orderForm = document.getElementById("orderForm");
+
+const successSection = document.getElementById("success");
+const orderSection = document.getElementById("order");
+
+// ====== STATE ======
+const cart = {}; // { id: qty }
+const priceMap = {}; // { id: price }
+const nameMap = {};  // { id: name }
+
+flatAll().forEach(item => {
+  const id = slugify(item.name);
+  cart[id] = 0;
+  priceMap[id] = item.price;
+  nameMap[id] = item.name;
+});
+
+// ====== RENDER MENU ======
+function renderCategory(list, container) {
+  container.innerHTML = list.map((item) => {
+    const id = slugify(item.name);
+    return `
+      <div class="menu-card reveal-card" data-reveal="card">
+        <img src="${item.img}" alt="${item.name}">
+        <div class="menu-info">
+          <h4>${item.name}</h4>
+          <div class="menu-price">₱${item.price}</div>
+          <div class="qty">
+            <button type="button" aria-label="Decrease" onclick="updateQty('${id}', -1)">−</button>
+            <span id="q-${id}">0</span>
+            <button type="button" aria-label="Increase" onclick="updateQty('${id}', 1)">+</button>
+          </div>
         </div>
       </div>
-    </div>`;
+    `;
+  }).join("");
+}
+
+renderCategory(MENU.main, menuMain);
+renderCategory(MENU.veg, menuVeg);
+renderCategory(MENU.dessert, menuDessert);
+
+// ====== CART ======
+window.updateQty = function(id, delta) {
+  cart[id] = Math.max(0, cart[id] + delta);
+  const qEl = document.getElementById(`q-${id}`);
+  if (qEl) qEl.textContent = cart[id];
+  renderOrder();
+};
+
+function renderOrder() {
+  orderList.innerHTML = "";
+  let total = 0;
+  const details = [];
+
+  Object.keys(cart).forEach((id) => {
+    const qty = cart[id];
+    if (qty > 0) {
+      const sub = qty * priceMap[id];
+      total += sub;
+      details.push(`${qty} x ${nameMap[id]}`);
+      orderList.innerHTML += `<div>${qty} × ${nameMap[id]} — ₱${sub}</div>`;
+    }
   });
+
+  totalEl.textContent = total;
+  orderDetails.value = details.join(", ");
+  totalAmount.value = String(total);
 }
 
-build(data.main,"menuMain");
-build(data.veg,"menuVeg");
-build(data.dessert,"menuDessert");
+// ====== PAYMENT ======
+window.selectPayment = function(method) {
+  paymentHidden.value = method;
 
-function qty(name,price,val){
-  cart[name]=Math.max(0,cart[name]+val);
-  document.getElementById("q"+name).innerText=cart[name];
-  render();
-}
-
-function render(){
-  let total=0,txt=[];
-  document.getElementById("orderList").innerHTML="";
-  for(let k in cart){
-    if(cart[k]>0){
-      let sub=cart[k]*priceOf(k);
-      total+=sub;
-      txt.push(`${cart[k]} x ${k}`);
-      document.getElementById("orderList").innerHTML+=`<div>${cart[k]} × ${k} — ₱${sub}</div>`;
-    }
+  if (method === "GCash") {
+    gcashBox.classList.add("show");
+  } else {
+    gcashBox.classList.remove("show");
   }
-  document.getElementById("total").innerText=total;
-  document.getElementById("orderDetails").value=txt.join(", ");
-}
+};
 
-function priceOf(name){
-  for(let cat in data){
-    for(let i of data[cat]){
-      if(i[0]===name) return i[1];
-    }
-  }
-}
+// ====== THEME (DEFAULT DARK) ======
+(function initTheme(){
+  const saved = localStorage.getItem("mina_theme");
+  if (saved === "light") document.body.classList.add("light");
+})();
 
-function selectPayment(m){
-  document.getElementById("paymentHidden").value=m;
-  document.getElementById("gcashBox").style.display = m==="GCash" ? "block" : "none";
-}
-
-function toggleMode(){
+window.toggleMode = function() {
   document.body.classList.toggle("light");
-}
+  localStorage.setItem("mina_theme", document.body.classList.contains("light") ? "light" : "dark");
+};
+
+// ====== SUCCESS PAGE (Formspree AJAX + file upload support) ======
+orderForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Require at least 1 item
+  const hasItem = Object.values(cart).some(q => q > 0);
+  if (!hasItem) {
+    alert("Please add at least 1 item to your order.");
+    return;
+  }
+
+  const formData = new FormData(orderForm);
+
+  try {
+    const res = await fetch(orderForm.action, {
+      method: "POST",
+      body: formData,
+      headers: { "Accept": "application/json" }
+    });
+
+    if (!res.ok) throw new Error("Submit failed");
+
+    // Reset cart + UI
+    Object.keys(cart).forEach(id => {
+      cart[id] = 0;
+      const qEl = document.getElementById(`q-${id}`);
+      if (qEl) qEl.textContent = "0";
+    });
+    renderOrder();
+    gcashBox.classList.remove("show");
+    paymentHidden.value = "COD";
+    orderForm.reset();
+
+    // Show success, scroll to it
+    successSection.classList.add("show");
+    window.location.hash = "#success";
+  } catch (err) {
+    alert("Oops! Something went wrong. Please try again.");
+  }
+});
+
+// ====== REVEAL ANIMATIONS (cards + headings) ======
+const revealTargets = [
+  ...document.querySelectorAll(".reveal"),
+  ...document.querySelectorAll('[data-reveal="card"]')
+];
+
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("reveal-in");
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+revealTargets.forEach(el => io.observe(el));
