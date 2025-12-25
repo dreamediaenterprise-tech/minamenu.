@@ -4,15 +4,22 @@
   <meta charset="UTF-8">
   <title>Mina Menu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dark">
+
+<!-- DARK/LIGHT TOGGLE -->
+<button class="mode-toggle" onclick="toggleMode()">☀ / 🌙</button>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <h1>Mina Menu</h1>
+    <h1>M I N A &nbsp; M E N U</h1>
     <p>Luxury Home-Style Catering</p>
     <a href="#menu" class="hero-btn">View Menu</a>
   </div>
@@ -20,8 +27,22 @@
 
 <!-- MENU -->
 <section id="menu" class="menu-section">
-  <h2 class="section-title">Our Menu</h2>
-  <div id="menuGrid" class="menu-grid"></div>
+
+  <div class="category">
+    <h2>MAIN DISHES</h2>
+  </div>
+  <div class="menu-grid" id="menuMain"></div>
+
+  <div class="category">
+    <h2>VEGETABLES</h2>
+  </div>
+  <div class="menu-grid" id="menuVeg"></div>
+
+  <div class="category">
+    <h2>DESSERTS</h2>
+  </div>
+  <div class="menu-grid" id="menuDessert"></div>
+
 </section>
 
 <!-- ORDER -->
@@ -30,50 +51,59 @@
     <h3>Your Order</h3>
 
     <div id="orderList" class="order-list"></div>
-    <div class="order-total">
-      Total: ₱<span id="total">0</span>
-    </div>
+    <div class="order-total">Total: ₱<span id="total">0</span></div>
 
-    <form action="https://formspree.io/f/xreznnpn" method="POST">
+    <form action="https://formspree.io/f/xreznnpn" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="order_details" id="orderDetails">
-      <input type="hidden" name="payment_method" id="paymentHidden">
+      <input type="hidden" name="payment_method" id="paymentHidden" value="COD">
 
-      <label>
-        Name
+      <label>Name
         <input type="text" name="name" required>
       </label>
 
-      <label>
-        Contact Number
+      <label>Contact Number
         <input type="text" name="contact" required>
       </label>
 
-      <label>
-        Address / Notes
+      <label>Address / Notes
         <textarea name="address" rows="3" required></textarea>
       </label>
 
       <!-- PAYMENT -->
       <div class="payment-box">
         <p>Payment Method</p>
+
         <label>
-          <input type="radio" name="payment" value="COD" checked onchange="toggleGCash(false)">
+          <input type="radio" name="payment" checked onclick="selectPayment('COD')">
           Cash on Delivery
         </label>
+
         <label>
-          <input type="radio" name="payment" value="GCash" onchange="toggleGCash(true)">
+          <input type="radio" name="payment" onclick="selectPayment('GCash')">
           GCash
         </label>
 
         <div id="gcashBox" class="gcash-box">
           <p>Send payment to:</p>
-          <strong>GCash: 0981 011 7896</strong>
+          <strong>0981 011 7896</strong>
+
+          <label class="upload">
+            Upload payment screenshot (optional)
+            <input type="file" name="gcash_proof">
+          </label>
         </div>
       </div>
 
       <button type="submit" class="submit-btn">Send Order</button>
     </form>
   </div>
+</section>
+
+<!-- SUCCESS -->
+<section class="success" id="success">
+  <h2>✔ Order Received</h2>
+  <p>Thank you! We will contact you shortly.</p>
+  <p>📞 0981 011 7896</p>
 </section>
 
 <!-- FOOTER -->
