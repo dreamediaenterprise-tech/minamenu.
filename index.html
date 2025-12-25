@@ -1,198 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mina's Menu | Premium Catering</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Mina Menu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="header-overlay">
-            <h1 class="main-title">Mina's Menu</h1>
-            <div class="divider"></div>
-            <p class="slogan">Savour the Taste of Home</p>
-        </div>
-    </header>
 
-    <div class="container">
-        <form action="https://formspree.io/f/mkowwyzq" method="POST" id="orderForm">
-            
-            <section class="customer-section">
-                <h2 class="section-title">Delivery & Payment</h2>
-                <div class="form-grid">
-                    <div class="input-box"><input type="text" name="Customer-Name" placeholder="Full Name" required></div>
-                    <div class="input-box"><input type="tel" name="Customer-Phone" placeholder="Contact Number" required></div>
-                </div>
-                <div class="input-box">
-                    <textarea name="Customer-Address" placeholder="Complete Delivery Address" rows="2" required></textarea>
-                </div>
-                
-                <div class="payment-box">
-                    <p><strong>Select Payment Method:</strong></p>
-                    <div class="radio-group">
-                        <label><input type="radio" name="Payment-Method" value="GCash" required> GCash</label>
-                        <label><input type="radio" name="Payment-Method" value="Cash on Delivery" required> COD</label>
-                    </div>
-                </div>
-            </section>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Mina Menu</h1>
+    <p>Luxury Home-Style Catering</p>
+    <a href="#menu" class="hero-btn">View Menu</a>
+  </div>
+</section>
 
-            <h2 class="section-title">Our Menu</h2>
-            <div class="menu-grid">
-                
-                <div class="card">
-                    <div class="badge gold">⭐ Best Seller</div>
-                    <img src="https://i.pinimg.com/736x/22/6c/0e/226c0eb094603fb64fd328c53b673f2d.jpg">
-                    <div class="card-info">
-                        <h4>Spaghetti (Large)</h4>
-                        <p class="price">₱1,200</p>
-                        <div class="qty-selector">
-                            <button type="button" onclick="changeQty('Spaghetti', 1200, -1)">-</button>
-                            <span id="qty-Spaghetti">0</span>
-                            <button type="button" onclick="changeQty('Spaghetti', 1200, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
+<!-- MENU -->
+<section id="menu" class="menu-section">
+  <h2 class="section-title">Our Menu</h2>
+  <div id="menuGrid" class="menu-grid"></div>
+</section>
 
-                <div class="card">
-                    <img src="https://i.pinimg.com/736x/d5/ba/d6/d5bad6cd56327d7857b225cb5913b31c.jpg">
-                    <div class="card-info">
-                        <h4>Pansit (Large)</h4>
-                        <p class="price">₱1,200</p>
-                        <div class="qty-selector">
-                            <button type="button" onclick="changeQty('Pansit', 1200, -1)">-</button>
-                            <span id="qty-Pansit">0</span>
-                            <button type="button" onclick="changeQty('Pansit', 1200, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
+<!-- ORDER -->
+<section class="order-section">
+  <div class="order-card">
+    <h3>Your Order</h3>
 
-                <div class="card">
-                    <img src="https://i.pinimg.com/736x/a5/7a/da/a57ada9962153de831f02e5d2f643797.jpg">
-                    <div class="card-info">
-                        <h4>Shanghai (100 pcs)</h4>
-                        <p class="price">₱900</p>
-                        <div class="qty-selector">
-                            <button type="button" onclick="changeQty('Shanghai', 900, -1)">-</button>
-                            <span id="qty-Shanghai">0</span>
-                            <button type="button" onclick="changeQty('Shanghai', 900, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="https://i.pinimg.com/736x/c4/a4/52/c4a4522cdc59f29e0470094ea8f0f259.jpg">
-                    <div class="card-info">
-                        <h4>Menudo</h4>
-                        <p class="price">₱1,500</p>
-                        <div class="qty-selector">
-                            <button type="button" onclick="changeQty('Menudo', 1500, -1)">-</button>
-                            <span id="qty-Menudo">0</span>
-                            <button type="button" onclick="changeQty('Menudo', 1500, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="https://i.pinimg.com/736x/88/b7/45/88b745b36c8ff8b15b834cdbec9b50e3.jpg">
-                    <div class="card-info">
-                        <h4>Buttered Shrimp</h4>
-                        <p class="price">₱1,500</p>
-                        <div class="qty-selector">
-                            <button type="button" onclick="changeQty('Shrimp', 1500, -1)">-</button>
-                            <span id="qty-Shrimp">0</span>
-                            <button type="button" onclick="changeQty('Shrimp', 1500, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="https://i.pinimg.com/1200x/ba/e6/10/bae61061fa702ec7db585d28bc2ce29e.jpg">
-                    <div class="card-info">
-                        <h4>Relyeno (Per Piece)</h4>
-                        <p class="price">₱250</p>
-                        <div class="qty-selector">
-                            <button type="button" onclick="changeQty('Relyeno', 250, -1)">-</button>
-                            <span id="qty-Relyeno">0</span>
-                            <button type="button" onclick="changeQty('Relyeno', 250, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="https://i.pinimg.com/1200x/d0/5e/c4/d05ec437d15f0b8d81a49ea07e39f20e.jpg">
-                    <div class="card-info">
-                        <h4>Maja Blanca (Bilao)</h4>
-                        <p class="price">₱500</p>
-                        <div class="qty-selector">
-                            <button type="button" onclick="changeQty('Maja', 500, -1)">-</button>
-                            <span id="qty-Maja">0</span>
-                            <button type="button" onclick="changeQty('Maja', 500, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="https://i.pinimg.com/1200x/c6/97/6f/c6976fa9306f92076a1153259634164b.jpg">
-                    <div class="card-info">
-                        <h4>Leche Flan (One Tub)</h4>
-                        <p class="price">₱100</p>
-                        <div class="qty-selector">
-                            <button type="button" onclick="changeQty('LecheFlan', 100, -1)">-</button>
-                            <span id="qty-LecheFlan">0</span>
-                            <button type="button" onclick="changeQty('LecheFlan', 100, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="https://i.pinimg.com/1200x/f1/8d/a8/f18da80beb16d7736448c375624bd091.jpg">
-                    <div class="card-info">
-                        <h4>Puto Cheese (25 pcs)</h4>
-                        <p class="price">₱300</p>
-                        <div class="qty-selector">
-                            <button type="button" onclick="changeQty('Puto', 300, -1)">-</button>
-                            <span id="qty-Puto">0</span>
-                            <button type="button" onclick="changeQty('Puto', 300, 1)">+</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <textarea name="Order-Summary" id="orderSummary" style="display:none;"></textarea>
-            <input type="hidden" name="Total-Amount" id="totalPriceHidden">
-
-            <div class="cart-bar">
-                <div class="cart-details">
-                    <span class="total-label">Subtotal</span>
-                    <span class="total-price" id="totalDisplay">₱0</span>
-                </div>
-                <button type="button" class="checkout-btn" onclick="showReview()">Review Order</button>
-            </div>
-
-            <div id="reviewModal" class="modal">
-                <div class="modal-content">
-                    <h3>Review Your Order</h3>
-                    <div id="reviewList"></div>
-                    <hr>
-                    <p><strong>Total: ₱<span id="modalTotal">0</span></strong></p>
-                    <div class="modal-btns">
-                        <button type="button" class="edit-btn" onclick="closeModal()">Edit</button>
-                        <button type="submit" class="confirm-btn">Place Order Now</button>
-                    </div>
-                </div>
-            </div>
-        </form>
+    <div id="orderList" class="order-list"></div>
+    <div class="order-total">
+      Total: ₱<span id="total">0</span>
     </div>
 
-    <footer class="footer">
-        <p><strong>GCash Number:</strong> 09810117896</p>
-        <p><strong>Contact Us:</strong> 09810117896</p>
-        <p>© 2025 Mina's Menu. Savour the Taste of Home.</p>
-    </footer>
+    <form action="https://formspree.io/f/xreznnpn" method="POST">
+      <input type="hidden" name="order_details" id="orderDetails">
+      <input type="hidden" name="payment_method" id="paymentHidden">
 
-    <script src="script.js"></script>
+      <label>
+        Name
+        <input type="text" name="name" required>
+      </label>
+
+      <label>
+        Contact Number
+        <input type="text" name="contact" required>
+      </label>
+
+      <label>
+        Address / Notes
+        <textarea name="address" rows="3" required></textarea>
+      </label>
+
+      <!-- PAYMENT -->
+      <div class="payment-box">
+        <p>Payment Method</p>
+        <label>
+          <input type="radio" name="payment" value="COD" checked onchange="toggleGCash(false)">
+          Cash on Delivery
+        </label>
+        <label>
+          <input type="radio" name="payment" value="GCash" onchange="toggleGCash(true)">
+          GCash
+        </label>
+
+        <div id="gcashBox" class="gcash-box">
+          <p>Send payment to:</p>
+          <strong>GCash: 0981 011 7896</strong>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Send Order</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>📞 0981 011 7896</p>
+  <p>📧 dreamedia.enterprise@gmail.com</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
-
