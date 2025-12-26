@@ -1,391 +1,217 @@
-:root{
-  --bg:#0b0b0b;
-  --panel:#151515;
-  --panel2:#0f0f0f;
-  --text:#f5f5f5;
-  --muted:rgba(245,245,245,.75);
-  --gold:#c9a24d;
-  --ink:#111;
-  --shadow: 0 18px 45px rgba(0,0,0,.35);
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Mina Menu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-/* Light theme overrides */
-body.light{
-  --bg:#f5f5f5;
-  --panel:#ffffff;
-  --panel2:#f0f0f0;
-  --text:#111;
-  --muted:rgba(0,0,0,.65);
-  --shadow: 0 18px 45px rgba(0,0,0,.12);
-}
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Poppins',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  transition:.25s ease;
-}
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-/* Toggle */
-.mode-toggle{
-  position:fixed;
-  top:18px;
-  right:18px;
-  z-index:999;
-  padding:10px 14px;
-  border:none;
-  border-radius:999px;
-  cursor:pointer;
-  background:rgba(0,0,0,.55);
-  color:#fff;
-  backdrop-filter: blur(8px);
-}
-body.light .mode-toggle{
-  background:rgba(255,255,255,.65);
-  color:#111;
-  border:1px solid rgba(0,0,0,.08);
-}
+<body class="dark">
 
-/* HERO */
-.hero{
-  height:100vh;
-  position:relative;
-  background:url("https://i.pinimg.com/736x/2e/03/22/2e03226e93fb405508db538094014e3b.jpg") center/cover no-repeat;
-  overflow:hidden;
-}
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.62);
-  animation: overlayFade 1.25s ease forwards;
-}
-@keyframes overlayFade{
-  from{background:rgba(0,0,0,.80)}
-  to{background:rgba(0,0,0,.62)}
-}
-.hero-content{
-  position:relative;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:24px;
-  opacity:0;
-  animation: heroUp 1.15s ease forwards .25s;
-}
-@keyframes heroUp{
-  from{opacity:0; transform:translateY(22px)}
-  to{opacity:1; transform:translateY(0)}
-}
-.hero-content h1{
-  font-family:'Playfair Display',serif;
-  letter-spacing:6px;
-  font-size:clamp(2.4rem, 5vw, 3.7rem);
-  text-shadow:0 12px 35px rgba(0,0,0,.35);
-}
-.hero-content p{
-  margin-top:10px;
-  color:var(--muted);
-  font-size:1.05rem;
-}
-.hero-btn{
-  margin-top:28px;
-  padding:14px 40px;
-  border:1px solid var(--gold);
-  color:var(--gold);
-  text-decoration:none;
-  letter-spacing:1px;
-  border-radius:999px;
-  transition:.25s ease;
-  background:transparent;
-}
-.hero-btn:hover{
-  background:var(--gold);
-  color:#111;
-}
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">MM</div>
+      <div class="brand-text">
+        <div class="brand-name">Mina Menu</div>
+        <div class="brand-sub">Luxury Home-Style Catering</div>
+      </div>
+    </div>
 
-/* MENU SECTION */
-.menu-section{
-  padding:84px 20px;
-}
+    <nav class="navlinks">
+      <a href="#best">Best</a>
+      <a href="#ulam">Ulam</a>
+      <a href="#desserts">Desserts</a>
+      <a href="#order">Order</a>
+    </nav>
 
-/* Category separator */
-.category{
-  text-align:center;
-  margin:52px auto 20px;
-}
-.category h2{
-  display:inline-block;
-  letter-spacing:3px;
-  font-size:1.2rem;
-  padding-bottom:8px;
-  border-bottom:1px solid var(--gold);
-}
+    <button class="mode-toggle" type="button" aria-label="Toggle theme" onclick="toggleMode()">☀ / 🌙</button>
+  </header>
 
-/* GRID FIX (IMPORTANT): keeps card width consistent even if only 1 item */
-.menu-grid{
-  max-width:1200px;
-  margin:0 auto;
-  display:grid;
-  gap:24px;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 340px));
-  justify-content:center; /* <-- THIS FIXES "single item becomes huge" */
-}
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>M I N A &nbsp; M E N U</h1>
+      <p>Premium catering-style menu • fast ordering • elegant experience</p>
 
-/* Card */
-.menu-card{
-  width:100%;
-  background:var(--panel);
-  border-radius:18px;
-  overflow:hidden;
-  box-shadow:var(--shadow);
-  transform:translateY(0);
-  transition: transform .28s ease, box-shadow .28s ease;
-  opacity:0;            /* reveal animation base */
-  transform: translateY(16px);
-}
-.menu-card.reveal-in{
-  opacity:1;
-  transform:translateY(0);
-}
-.menu-card:hover{
-  transform:translateY(-8px);
-}
+      <div class="hero-actions">
+        <a href="#best" class="hero-btn primary">Explore Menu</a>
+        <a href="#order" class="hero-btn ghost">View Order</a>
+      </div>
 
-.menu-card img{
-  width:100%;
-  height:190px;
-  object-fit:cover;
-  display:block;
-  filter:saturate(1.02) contrast(1.03);
-}
+      <div class="hero-badges">
+        <span>COD / GCash</span>
+        <span>Proof upload (optional)</span>
+        <span>Mobile-friendly</span>
+      </div>
+    </div>
+  </section>
 
-.menu-info{
-  padding:18px;
-}
-.menu-info h4{
-  font-size:1rem;
-  font-weight:600;
-  margin-bottom:6px;
-}
-.menu-price{
-  color:var(--gold);
-  margin-bottom:12px;
-  font-weight:600;
-}
+  <!-- MENU -->
+  <section class="menu-section" id="menu">
+    <div class="section-head reveal">
+      <h2>Our Selection</h2>
+      <p>Choose items, adjust quantity, then send your order.</p>
+    </div>
 
-/* Qty */
-.qty{
-  display:flex;
-  gap:12px;
-  align-items:center;
-}
-.qty button{
-  width:34px;
-  height:34px;
-  border:none;
-  background:var(--gold);
-  cursor:pointer;
-  font-weight:800;
-  border-radius:10px;
-}
-.qty span{
-  min-width:26px;
-  text-align:center;
-  font-weight:600;
-  color:var(--text);
-}
+    <div class="category reveal" id="best">
+      <h3>BEST SELLERS</h3>
+      <div class="cat-line"></div>
+    </div>
+    <div class="menu-grid" id="menuBest"></div>
 
-/* ORDER */
-.order-section{
-  padding:84px 20px;
-  background:linear-gradient(180deg, transparent, rgba(0,0,0,.08));
-}
-body.light .order-section{
-  background:linear-gradient(180deg, transparent, rgba(0,0,0,.04));
-}
-.order-card{
-  max-width:460px;
-  margin:0 auto;
-  background:var(--panel);
-  padding:34px;
-  border-radius:22px;
-  box-shadow:var(--shadow);
-}
-.order-card h3{
-  font-size:1.2rem;
-  margin-bottom:12px;
-}
-.order-list div{
-  font-size:.92rem;
-  margin-bottom:7px;
-  color:var(--muted);
-}
-.order-total{
-  margin:14px 0 10px;
-  font-weight:700;
-}
+    <div class="category reveal" id="ulam">
+      <h3>ULAM</h3>
+      <div class="cat-line"></div>
+    </div>
+    <div class="menu-grid" id="menuUlam"></div>
 
-label{
-  display:block;
-  margin-top:14px;
-  font-size:.92rem;
-}
-input, textarea{
-  width:100%;
-  margin-top:8px;
-  padding:11px 12px;
-  border-radius:12px;
-  border:none;
-  outline:none;
-  background:rgba(255,255,255,.06);
-  color:var(--text);
-}
-body.light input, body.light textarea{
-  background:rgba(0,0,0,.06);
-  color:#111;
-}
+    <div class="category reveal" id="desserts">
+      <h3>DESSERTS</h3>
+      <div class="cat-line"></div>
+    </div>
+    <div class="menu-grid" id="menuDessert"></div>
+  </section>
 
-.submit-btn{
-  margin-top:18px;
-  width:100%;
-  padding:14px;
-  background:var(--gold);
-  border:none;
-  cursor:pointer;
-  font-weight:800;
-  border-radius:14px;
-}
-.mini-note{
-  margin-top:10px;
-  font-size:.82rem;
-  opacity:.7;
-  text-align:center;
-}
+  <!-- ORDER -->
+  <section class="order-section" id="order">
+    <div class="order-wrap">
+      <div class="order-card reveal">
+        <div class="order-title">
+          <h3>Your Order</h3>
+          <span class="pill" id="itemCount">0 items</span>
+        </div>
 
-/* Payment */
-.payment-box{
-  margin-top:18px;
-  padding:14px;
-  border-radius:16px;
-  background:rgba(0,0,0,.12);
-}
-body.light .payment-box{
-  background:rgba(0,0,0,.05);
-}
-.payment-title{
-  margin-bottom:10px;
-  font-weight:700;
-}
-.radio{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin-top:8px;
-}
-.radio input{width:auto;margin:0}
+        <div id="orderList" class="order-list empty">
+          <div class="empty-state">
+            <div class="empty-dot"></div>
+            <p>No items yet. Add from the menu.</p>
+          </div>
+        </div>
 
-.gcash-box{
-  margin-top:12px;
-  border:1px solid var(--gold);
-  border-radius:14px;
-  padding:12px;
-  background:rgba(0,0,0,.12);
+        <div class="order-total">
+          <div>Total</div>
+          <div>₱<span id="total">0</span></div>
+        </div>
 
-  /* smooth open/close animation */
-  max-height:0;
-  overflow:hidden;
-  opacity:0;
-  transform:translateY(-6px);
-  transition:.25s ease;
-}
-body.light .gcash-box{
-  background:rgba(0,0,0,.04);
-}
-.gcash-box.show{
-  max-height:240px;
-  opacity:1;
-  transform:translateY(0);
-}
-.gcash-label{opacity:.8;margin-bottom:6px}
-.gcash-num{font-size:1.05rem; color:var(--gold)}
-.upload{
-  margin-top:10px;
-  font-size:.9rem;
-}
-.upload input{
-  display:block;
-  margin-top:8px;
-  background:transparent;
-}
+        <form id="orderForm" action="https://formspree.io/f/xreznnpn" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="order_details" id="orderDetails" />
+          <input type="hidden" name="total_amount" id="totalAmount" />
+          <input type="hidden" name="payment_method" id="paymentHidden" value="COD" />
 
-/* SUCCESS PAGE */
-.success{
-  display:none;
-  padding:90px 20px;
-}
-.success.show{display:block}
-.success-card{
-  max-width:520px;
-  margin:0 auto;
-  background:var(--panel);
-  padding:44px 28px;
-  border-radius:22px;
-  text-align:center;
-  box-shadow:var(--shadow);
-}
-.success-card h2{
-  font-family:'Playfair Display',serif;
-  letter-spacing:2px;
-  margin-bottom:10px;
-}
-.success-card p{
-  opacity:.85;
-}
-.success-contact{
-  margin-top:12px;
-  color:var(--gold);
-  font-weight:700;
-}
-.success-btn{
-  display:inline-block;
-  margin-top:18px;
-  padding:12px 26px;
-  border-radius:999px;
-  border:1px solid var(--gold);
-  color:var(--gold);
-  text-decoration:none;
-  transition:.25s ease;
-}
-.success-btn:hover{
-  background:var(--gold);
-  color:#111;
-}
+          <div class="form-grid">
+            <label>
+              Name
+              <input type="text" name="name" required />
+            </label>
 
-/* FOOTER */
-.footer{
-  text-align:center;
-  padding:34px 16px;
-  opacity:.65;
-}
+            <label>
+              Contact Number
+              <input type="text" name="contact" required />
+            </label>
+          </div>
 
-/* Scroll reveal for headings/cards */
-.reveal{
-  opacity:0;
-  transform:translateY(14px);
-  transition:.55s ease;
-}
-.reveal.reveal-in{
-  opacity:1;
-  transform:translateY(0);
-}
+          <label>
+            Address / Notes
+            <textarea name="address" rows="3" required></textarea>
+          </label>
 
-/* Mobile tweaks */
-@media (max-width: 420px){
-  .hero-btn{padding:12px 30px}
-  .order-card{padding:26px}
-}
+          <div class="payment-box">
+            <div class="payment-title">
+              <span>Payment Method</span>
+              <span class="muted">GCash: 0981 011 7896</span>
+            </div>
+
+            <div class="payment-options">
+              <label class="radio">
+                <input type="radio" name="payment" value="COD" checked onclick="selectPayment('COD')">
+                Cash on Delivery
+              </label>
+
+              <label class="radio">
+                <input type="radio" name="payment" value="GCash" onclick="selectPayment('GCash')">
+                GCash
+              </label>
+            </div>
+
+            <div id="gcashBox" class="gcash-box">
+              <div class="gcash-row">
+                <div>
+                  <div class="gcash-label">Send payment to</div>
+                  <div class="gcash-num">0981 011 7896</div>
+                  <div class="gcash-note">Upload proof below (optional).</div>
+                </div>
+              </div>
+
+              <label class="upload">
+                Payment Screenshot (optional)
+                <input type="file" name="gcash_proof" accept="image/*">
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">Send Order</button>
+          <p class="mini-note">📞 0981 011 7896 • 📧 dreamedia.enterprise@gmail.com</p>
+        </form>
+      </div>
+
+      <div class="side-info reveal">
+        <div class="info-card">
+          <h4>Need help?</h4>
+          <p>We can assist with ordering & details.</p>
+          <div class="info-row">📞 0981 011 7896</div>
+          <div class="info-row">📧 dreamedia.enterprise@gmail.com</div>
+        </div>
+
+        <div class="info-card">
+          <h4>Notes</h4>
+          <ul>
+            <li>Prices are per tray/pack as labeled.</li>
+            <li>GCash proof upload is optional.</li>
+            <li>We’ll confirm your order via contact number.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SUCCESS -->
+  <section class="success" id="success">
+    <div class="success-card">
+      <div class="success-badge">✔</div>
+      <h2>Order Received</h2>
+      <p>Thank you! We will contact you shortly to confirm.</p>
+      <p class="success-contact">📞 0981 011 7896</p>
+      <div class="success-actions">
+        <a class="success-btn" href="#menu">Back to Menu</a>
+        <a class="success-btn ghost" href="#order">New Order</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <div class="brand-mark sm">MM</div>
+        <div>
+          <div class="brand-name">Mina Menu</div>
+          <div class="brand-sub">Luxury Home-Style Catering</div>
+        </div>
+      </div>
+      <div class="foot-contact">
+        <div>📞 0981 011 7896</div>
+        <div>📧 dreamedia.enterprise@gmail.com</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
