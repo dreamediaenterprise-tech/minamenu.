@@ -5,120 +5,211 @@
   <title>Mina Menu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Fonts -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body class="dark">
-  <!-- Dark/Light Toggle -->
-  <button class="mode-toggle" type="button" aria-label="Toggle theme" onclick="toggleMode()">☀ / 🌙</button>
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">MM</div>
+      <div class="brand-text">
+        <div class="brand-name">Mina Menu</div>
+        <div class="brand-sub">Luxury Home-Style Catering</div>
+      </div>
+    </div>
+
+    <nav class="navlinks">
+      <a href="#best">Best</a>
+      <a href="#ulam">Ulam</a>
+      <a href="#desserts">Desserts</a>
+      <a href="#order">Order</a>
+    </nav>
+
+    <button class="mode-toggle" type="button" aria-label="Toggle theme" onclick="toggleMode()">☀ / 🌙</button>
+  </header>
 
   <!-- HERO -->
   <section class="hero" id="top">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1>M I N A &nbsp; M E N U</h1>
-      <p>Luxury Home-Style Catering</p>
-      <a href="#menu" class="hero-btn">View Menu</a>
+      <p>Premium catering-style menu • fast ordering • elegant experience</p>
+
+      <div class="hero-actions">
+        <a href="#best" class="hero-btn primary">Explore Menu</a>
+        <a href="#order" class="hero-btn ghost">View Order</a>
+      </div>
+
+      <div class="hero-badges">
+        <span>COD / GCash</span>
+        <span>Proof upload (optional)</span>
+        <span>Mobile-friendly</span>
+      </div>
     </div>
   </section>
 
   <!-- MENU -->
-  <section id="menu" class="menu-section">
-    <div class="category reveal">
-      <h2>MAIN DISHES</h2>
+  <section class="menu-section" id="menu">
+    <div class="section-head reveal">
+      <h2>Our Selection</h2>
+      <p>Choose items, adjust quantity, then send your order.</p>
     </div>
-    <div class="menu-grid" id="menuMain"></div>
 
-    <div class="category reveal">
-      <h2>VEGETABLES</h2>
+    <div class="category reveal" id="best">
+      <h3>BEST SELLERS</h3>
+      <div class="cat-line"></div>
     </div>
-    <div class="menu-grid" id="menuVeg"></div>
+    <div class="menu-grid" id="menuBest"></div>
 
-    <div class="category reveal">
-      <h2>DESSERTS</h2>
+    <div class="category reveal" id="ulam">
+      <h3>ULAM</h3>
+      <div class="cat-line"></div>
+    </div>
+    <div class="menu-grid" id="menuUlam"></div>
+
+    <div class="category reveal" id="desserts">
+      <h3>DESSERTS</h3>
+      <div class="cat-line"></div>
     </div>
     <div class="menu-grid" id="menuDessert"></div>
   </section>
 
   <!-- ORDER -->
   <section class="order-section" id="order">
-    <div class="order-card reveal">
-      <h3>Your Order</h3>
+    <div class="order-wrap">
+      <div class="order-card reveal">
+        <div class="order-title">
+          <h3>Your Order</h3>
+          <span class="pill" id="itemCount">0 items</span>
+        </div>
 
-      <div id="orderList" class="order-list"></div>
-
-      <div class="order-total">
-        Total: ₱<span id="total">0</span>
-      </div>
-
-      <form id="orderForm" action="https://formspree.io/f/xreznnpn" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="order_details" id="orderDetails" />
-        <input type="hidden" name="total_amount" id="totalAmount" />
-        <input type="hidden" name="payment_method" id="paymentHidden" value="COD" />
-
-        <label>
-          Name
-          <input type="text" name="name" required />
-        </label>
-
-        <label>
-          Contact Number
-          <input type="text" name="contact" required />
-        </label>
-
-        <label>
-          Address / Notes
-          <textarea name="address" rows="3" required></textarea>
-        </label>
-
-        <!-- PAYMENT -->
-        <div class="payment-box">
-          <p class="payment-title">Payment Method</p>
-
-          <label class="radio">
-            <input type="radio" name="payment" value="COD" checked onclick="selectPayment('COD')">
-            Cash on Delivery
-          </label>
-
-          <label class="radio">
-            <input type="radio" name="payment" value="GCash" onclick="selectPayment('GCash')">
-            GCash
-          </label>
-
-          <div id="gcashBox" class="gcash-box">
-            <p class="gcash-label">Send payment to:</p>
-            <strong class="gcash-num">0981 011 7896</strong>
-
-            <label class="upload">
-              Upload payment screenshot (optional)
-              <input type="file" name="gcash_proof" accept="image/*">
-            </label>
+        <div id="orderList" class="order-list empty">
+          <div class="empty-state">
+            <div class="empty-dot"></div>
+            <p>No items yet. Add from the menu.</p>
           </div>
         </div>
 
-        <button type="submit" class="submit-btn">Send Order</button>
-        <p class="mini-note">📞 0981 011 7896 • 📧 dreamedia.enterprise@gmail.com</p>
-      </form>
+        <div class="order-total">
+          <div>Total</div>
+          <div>₱<span id="total">0</span></div>
+        </div>
+
+        <form id="orderForm" action="https://formspree.io/f/xreznnpn" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="order_details" id="orderDetails" />
+          <input type="hidden" name="total_amount" id="totalAmount" />
+          <input type="hidden" name="payment_method" id="paymentHidden" value="COD" />
+
+          <div class="form-grid">
+            <label>
+              Name
+              <input type="text" name="name" required />
+            </label>
+
+            <label>
+              Contact Number
+              <input type="text" name="contact" required />
+            </label>
+          </div>
+
+          <label>
+            Address / Notes
+            <textarea name="address" rows="3" required></textarea>
+          </label>
+
+          <div class="payment-box">
+            <div class="payment-title">
+              <span>Payment Method</span>
+              <span class="muted">GCash: 0981 011 7896</span>
+            </div>
+
+            <div class="payment-options">
+              <label class="radio">
+                <input type="radio" name="payment" value="COD" checked onclick="selectPayment('COD')">
+                Cash on Delivery
+              </label>
+
+              <label class="radio">
+                <input type="radio" name="payment" value="GCash" onclick="selectPayment('GCash')">
+                GCash
+              </label>
+            </div>
+
+            <div id="gcashBox" class="gcash-box">
+              <div class="gcash-row">
+                <div>
+                  <div class="gcash-label">Send payment to</div>
+                  <div class="gcash-num">0981 011 7896</div>
+                  <div class="gcash-note">Upload proof below (optional).</div>
+                </div>
+              </div>
+
+              <label class="upload">
+                Payment Screenshot (optional)
+                <input type="file" name="gcash_proof" accept="image/*">
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">Send Order</button>
+          <p class="mini-note">📞 0981 011 7896 • 📧 dreamedia.enterprise@gmail.com</p>
+        </form>
+      </div>
+
+      <div class="side-info reveal">
+        <div class="info-card">
+          <h4>Need help?</h4>
+          <p>We can assist with ordering & details.</p>
+          <div class="info-row">📞 0981 011 7896</div>
+          <div class="info-row">📧 dreamedia.enterprise@gmail.com</div>
+        </div>
+
+        <div class="info-card">
+          <h4>Notes</h4>
+          <ul>
+            <li>Prices are per tray/pack as labeled.</li>
+            <li>GCash proof upload is optional.</li>
+            <li>We’ll confirm your order via contact number.</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- SUCCESS PAGE -->
+  <!-- SUCCESS -->
   <section class="success" id="success">
     <div class="success-card">
-      <h2>✔ Order Received</h2>
-      <p>Thank you! We will contact you shortly.</p>
+      <div class="success-badge">✔</div>
+      <h2>Order Received</h2>
+      <p>Thank you! We will contact you shortly to confirm.</p>
       <p class="success-contact">📞 0981 011 7896</p>
-      <a class="success-btn" href="#menu">Back to Menu</a>
+      <div class="success-actions">
+        <a class="success-btn" href="#menu">Back to Menu</a>
+        <a class="success-btn ghost" href="#order">New Order</a>
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer class="footer">
-    <p>📞 0981 011 7896</p>
-    <p>📧 dreamedia.enterprise@gmail.com</p>
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <div class="brand-mark sm">MM</div>
+        <div>
+          <div class="brand-name">Mina Menu</div>
+          <div class="brand-sub">Luxury Home-Style Catering</div>
+        </div>
+      </div>
+      <div class="foot-contact">
+        <div>📞 0981 011 7896</div>
+        <div>📧 dreamedia.enterprise@gmail.com</div>
+      </div>
+    </div>
   </footer>
 
   <script src="script.js"></script>
