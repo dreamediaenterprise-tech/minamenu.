@@ -9,29 +9,30 @@ const MENU = {
   ],
 
   ulam: [
-    // fixed prices requested
     { name: "Sisig", price: 1000, img: "https://i.pinimg.com/736x/74/59/3b/74593bd7b7641c6d3b57553f1bf77aa6.jpg" },
+
     { name: "Pork BBQ (30 pcs)", price: 1000, img: "https://i.pinimg.com/1200x/33/23/c4/3323c4dc60d03f54f2490d8fa9bb3d62.jpg" },
 
-    // the rest ulam default 1300
+    // ulam default 1300
     { name: "Kaldereta", price: 1300, img: "https://i.pinimg.com/1200x/6f/1d/35/6f1d35d7a3afa50bd70072af8bd2b072.jpg" },
     { name: "Pininyahang Manok", price: 1300, img: "https://i.pinimg.com/736x/c6/8c/f2/c68cf2223eac3c9ff5f3482e9f641b15.jpg" },
-    { name: "Fried Chicken", price: 1300, img: "https://i.pinimg.com/1200x/56/9e/a5/569ea58daee1a54a60e37545afc9310f.jpg" },
+
+    // FRIED CHICKEN TAG (NEW)
+    { name: "Fried Chicken", price: 1300, img: "https://i.pinimg.com/1200x/56/9e/a5/569ea58daee1a54a60e37545afc9310f.jpg", tag: "30 pcs • with gravy" },
+
     { name: "Afritada Chicken", price: 1300, img: "https://i.pinimg.com/1200x/c2/1f/38/c21f384030a47c8eac2d6228572cd213.jpg" },
     { name: "Lechon Kawali", price: 1300, img: "https://i.pinimg.com/1200x/08/52/8b/08528bc58cf9100e657a47d55007613f.jpg" },
     { name: "Kare-kare", price: 1300, img: "https://i.pinimg.com/1200x/7d/49/1e/7d491edfe4e64368ba8406c9380f3784.jpg" },
 
-    // keep relyeno as old item price
+    // kept old price item
     { name: "Relyeno (Per Piece)", price: 250, img: "https://i.pinimg.com/1200x/ba/e6/10/bae61061fa702ec7db585d28bc2ce29e.jpg" }
   ],
 
   dessert: [
-    // keep existing old prices
     { name: "Maja Blanca (Bilaos)", price: 500, img: "https://i.pinimg.com/1200x/d0/5e/c4/d05ec437d15f0b8d81a49ea07e39f20e.jpg" },
     { name: "Leche Flan (One Tub)", price: 100, img: "https://i.pinimg.com/1200x/c6/97/6f/c6976fa9306f92076a1153259634164b.jpg" },
     { name: "Puto Cheese (25 pcs)", price: 300, img: "https://i.pinimg.com/1200x/f1/8d/a8/f18da80beb16d7736448c375624bd091.jpg" },
 
-    // updated tray pricing
     { name: "Buko Salad (Tray)", price: 1000, img: "https://i.pinimg.com/1200x/2b/22/47/2b2247d85fedef4b2976e9b30ef40bf2.jpg" },
     { name: "Buko Pandan", price: 800, img: "https://i.pinimg.com/1200x/b5/cd/61/b5cd61c76ebef2eba4ab6301879bb032.jpg" }
   ]
@@ -56,30 +57,49 @@ const paymentHidden = document.getElementById("paymentHidden");
 
 const gcashBox = document.getElementById("gcashBox");
 const orderForm = document.getElementById("orderForm");
-
 const successSection = document.getElementById("success");
 
+const deliveryDate = document.getElementById("deliveryDate");
+const deliveryTime = document.getElementById("deliveryTime");
+
 // ====== STATE ======
-const cart = {};      // { id: qty }
-const priceMap = {}; // { id: price }
-const nameMap = {};  // { id: name }
+const cart = {};       // { id: qty }
+const priceMap = {};   // { id: price }
+const nameMap = {};    // { id: display name for order }
+const tagMap = {};     // { id: tag or "" }
 
 flatAll().forEach(item => {
   const id = slugify(item.name);
   cart[id] = 0;
   priceMap[id] = item.price;
-  nameMap[id] = item.name;
+  tagMap[id] = item.tag ? item.tag : "";
+  // for order summary, include tag so clear
+  nameMap[id] = item.tag ? `${item.name} (${item.tag.replace("•", "").trim()})` : item.name;
 });
+
+// ====== DATE MIN (today) ======
+(function setMinDate(){
+  const d = new Date();
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth()+1).padStart(2,"0");
+  const dd = String(d.getDate()).padStart(2,"0");
+  const today = `${yyyy}-${mm}-${dd}`;
+  if (deliveryDate) deliveryDate.min = today;
+})();
 
 // ====== RENDER MENU ======
 function renderCategory(list, container) {
   container.innerHTML = list.map((item) => {
     const id = slugify(item.name);
+    const tag = item.tag ? `<span class="item-tag">${item.tag}</span>` : "";
     return `
       <div class="menu-card" data-reveal="card">
         <img src="${item.img}" alt="${item.name}">
         <div class="menu-info">
-          <h4>${item.name}</h4>
+          <div class="title-row">
+            <h4>${item.name}</h4>
+            ${tag}
+          </div>
           <div class="menu-price">₱${item.price}</div>
           <div class="qty">
             <button type="button" aria-label="Decrease" onclick="updateQty('${id}', -1)">−</button>
@@ -108,7 +128,6 @@ function renderOrder() {
   let total = 0;
   let count = 0;
   const details = [];
-
   const lines = [];
 
   Object.keys(cart).forEach((id) => {
@@ -176,6 +195,12 @@ orderForm.addEventListener("submit", async (e) => {
     return;
   }
 
+  // simple schedule guard
+  if (!deliveryDate.value || !deliveryTime.value) {
+    alert("Please choose delivery date and time.");
+    return;
+  }
+
   const formData = new FormData(orderForm);
 
   try {
@@ -198,6 +223,13 @@ orderForm.addEventListener("submit", async (e) => {
     gcashBox.classList.remove("show");
     paymentHidden.value = "COD";
     orderForm.reset();
+
+    // re-apply min date after reset
+    const d = new Date();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth()+1).padStart(2,"0");
+    const dd = String(d.getDate()).padStart(2,"0");
+    deliveryDate.min = `${yyyy}-${mm}-${dd}`;
 
     successSection.classList.add("show");
     window.location.hash = "#success";
